@@ -1,4 +1,7 @@
 # 4.Execution_of_NetworkCommands
+### NAME:VAISHNAVIDEVI V
+### REG.NO:212223040230
+
 ## AIM :Use of Network commands in Real Time environment
 ## Software : Command Prompt And Network Protocol Analyzer
 ## Procedure: To do this EXPERIMENT- follows these steps:
@@ -26,7 +29,56 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
-## Output
+## PROGRAM
+
+## Ping command
+## Client
+```
+import socket 
+from pythonping import ping 
+s=socket.socket() 
+s.bind(('localhost',8000)) 
+s.listen(5) 
+c,addr=s.accept() 
+while True: 
+    hostname=c.recv(1024).decode() 
+    try: 
+        c.send(str(ping(hostname, verbose=False)).encode()) 
+    except KeyError: 
+        c.send("Not Found".encode())
+```
+## Server
+```
+import socket 
+s=socket.socket() 
+s.connect(('localhost',8000)) 
+while True: 
+    ip=input("Enter the website you want to ping ") 
+    s.send(ip.encode()) 
+    print(s.recv(1024).decode())
+```
+## Tranceroute command
+```
+from scapy.all import* 
+target = ["www.google.com"] 
+result, unans = traceroute(target,maxttl=32) 
+print(result,unans)
+```
+## OUTPUT
+## Ping command
+## Client
+
+![image](https://github.com/user-attachments/assets/0075029e-12d5-4fc5-b06d-3a543943ad85)
+
+
+## Server
+
+![image](https://github.com/user-attachments/assets/83d293c1-d836-4cca-a96c-72db36f3405a)
+
+
+## Tranceroute command
+
+![image](https://github.com/user-attachments/assets/5b56c506-75c9-493b-ad6f-ae065b5f33a3)
 
 ## Result
 Thus Execution of Network commands Performed 
